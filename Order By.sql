@@ -1,4 +1,4 @@
-/*
+﻿/*
 Order BY:
 The ORDER BY clause in SQL is used to sort the result set of a query by one or more columns.
 */
@@ -8,8 +8,8 @@ SELECT column1, column2, ...
 FROM table_name
 ORDER BY column_name [ASC | DESC];
 /*
-ASC ? Ascending order (default)
-DESC ? Descending order
+ASC → Ascending order (default)
+DESC → Descending order
 */
 
 
