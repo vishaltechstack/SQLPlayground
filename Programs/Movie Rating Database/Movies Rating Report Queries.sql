@@ -1,32 +1,68 @@
 -- Q-1) List all movies released after 2015.
+select * from movies
+where release_year > 2015
+
 
 -- Q-2) Show all users from India.
+select * from users
+where country = 'India'
+
 
 -- Q-3) Find all ratings for movie_id = 10.
+select * from ratings
+where movie_id = 10
+
 
 -- Q-4) List all movies in English.
+select * from movies
+where language = 'English'
+
 
 -- Q-5) Find distinct genres in the database.
+select distinct(genre) from movies
+
 
 -- Q-6) List top 10 highest-rated movies (average rating).
+select top 10 m.*, r.rating from ratings r
+join movies m on m.movie_id = r.movie_id
+order by r.rating desc
 
--- Q-7) Find users who rated more than 5 movies.
-
--- Q-8) Show movies with no ratings.
 
 -- Q-9) Count movies per genre.
+select genre, count(title) as total_movies from movies
+group by genre
+order by total_movies desc
+
 
 -- Q-10) Show movies directed by Christopher Nolan.
+select m.*, d.name as director_name from movies m
+join movie_directors md on md.movie_id = m.movie_id
+join directors d on d.director_id = md.director_id
+where d.name = 'Christopher Nolan'
 
--- Q-11) List users who never rated any movie.
-
--- Q-12) Find the most active rater (most ratings).
 
 -- Q-13) Count ratings submitted each year.
+select year(rating_date) as rating_year, count(rating) as total_ratings from ratings
+group by year(rating_date)
+order by total_ratings desc
+
 
 -- Q-14) Show movies released before 2000 with rating average > 4.
+select m.*, r.rating, r.rating_date from movies m
+join ratings r on r.movie_id = m.movie_id
+where m.release_year > 2000 and r.rating > 4
+order by r.rating desc
+
 
 -- Q-15) Find the top rated movie for each genre.
+/*select
+	m.genre,
+	m.title as top_movie,
+	max(r.rating) as highest_rating 
+from movies m
+join ratings r on r.movie_id = m.movie_id
+order by highest_rating desc
+*/
 
 -- Q-16) Identify country with most registered users.
 

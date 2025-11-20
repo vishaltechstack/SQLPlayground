@@ -4,11 +4,13 @@ join Students s on s.department_id = d.department_id
 group by s.first_name, s.last_name, d.department_name
 order by s.first_name
 
+
 -- Q-2) Show all courses offered by the Computer Science department.
 select c.course_id ,c.course_name from Courses c
 join Departments d on d.department_id = c.department_id
 where d.department_name = 'Computer Science and Engineering'
 group by c.course_id ,c.course_name
+
 
 -- Q-3) Count total students in each department.
 select d.department_name, sum(s.student_id) as total_student from Departments d
@@ -16,9 +18,11 @@ join Students s on s.department_id = d.department_id
 group by d.department_name
 order by total_student desc
 
+
 -- Q-4) List courses with credit value greater than 3.
 select course_id, course_name, credits from Courses
 where credits > 3
+
 
 -- Q-5) Find all students enrolled in semester "Fall" of 2024.
 select e.enrollment_id, s.student_id, s.first_name, s.last_name from Enrollments e
@@ -26,13 +30,21 @@ join Students s on s.student_id = e.student_id
 where e.semester = 'Fall' and e.year = 2024
 group by e.enrollment_id, s.student_id, s.first_name, s.last_name
 
+
 -- Q-6) For each department, show number of courses offered.
 select d.department_name, count(c.course_name) as number_of_courses from Courses c
 join Departments d on d.department_id = c.department_id
 group by d.department_name
 order by number_of_courses
 
+
 -- Q-7) Find students who are enrolled in more than 5 courses.
+select s.student_id, s.first_name, s.last_name, COUNT(c.course_id) as total_courses_enrolled from Students s
+join Enrollments e on e.student_id = s.student_id
+join Courses c on c.course_id = e.course_id
+group by s.student_id, s.first_name, s.last_name
+having COUNT(c.course_id) > 5
+order by total_courses_enrolled desc
 
 
 -- Q-8) Show average score per course.
@@ -42,6 +54,7 @@ join Courses c on c.course_id = e.course_id
 group by c.course_id, c.course_name
 order by average_score desc
 
+
 -- Q-9) List students who never appeared for an exam.
 select s.student_id, s.first_name, s.last_name from Students s
 join Enrollments e on e.student_id = s.student_id
@@ -49,16 +62,13 @@ join Exam_Scores es on es.enrollment_id = e.enrollment_id
 where es.is_absent = 1
 group by s.student_id, s.first_name, s.last_name
 
--- Q-10) Find courses with zero students enrolled.
 
--- Q-11) Show the top 3 students with highest total scores.
+-- Q-10) Show the top 3 students with highest total scores.
 select top 3 s.student_id, s.first_name, s.last_name, sum(es.score) as total_score from Students s
 join Enrollments e on e.student_id = s.student_id
 join Exam_Scores es on es.enrollment_id = e.enrollment_id
 group by s.student_id, s.first_name, s.last_name
 order by total_score desc
-
--- Q-12) Find students who attended less than 60% classes.
 
 -- Q-13) List students enrolled in courses outside their department.
 
