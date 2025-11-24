@@ -1,12 +1,29 @@
--- Q-1) Which customers placed the highest number of orders?
+-- Q-1) List top 10 customers placed the highest number of orders?
+select top 10 c.customer_id, c.name, c.phone, c.city, c.signup_date, count(o.order_id) as total_order  from Customers c
+join Orders o on o.customer_id = c.customer_id
+group by c.customer_id, c.name, c.phone, c.city, c.signup_date
+order by total_order desc
+
 
 -- Q-2) Which restaurants have the highest order count?
+select r.restaurant_id, r.name, r.city, r.rating, count(o.order_id) as total_order from Restaurants r
+join Orders o on o.restaurant_id = r.restaurant_id
+group by r.restaurant_id, r.name, r.city, r.rating
+order by total_order desc
+
 
 -- Q-3) Show restaurants that never received orders.
 
+
 -- Q-4) Which cuisine generates the most revenue?
+select r.cuisine, sum(o.total_amount) as revenue from Restaurants r
+join Orders o on o.restaurant_id = r.restaurant_id
+group by r.cuisine
+order by revenue desc
+
 
 -- Q-5) List top 3 restaurants by average customer rating in each city.
+
 
 -- Q-6) Count active vs inactive restaurants per city.
 

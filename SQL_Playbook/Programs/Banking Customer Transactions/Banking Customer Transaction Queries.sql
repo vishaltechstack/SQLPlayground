@@ -37,7 +37,12 @@ group by city
 select * from Customers
 select * from Accounts
 
+
 -- Q-7) Find total transaction amount per account.
+select a.account_id, a.account_type, sum(t.amount) as total_transaction_amount from Accounts a
+join Transactions t on t.account_id = a.account_id
+group by a.account_id, a.account_type
+order by total_transaction_amount desc
 
 -- Q-8) Find the latest transaction for each customer.
 
@@ -60,9 +65,14 @@ select
 	sum(case when txn_type = 'Debit' then amount else 0 end) as total_debit
 from Transactions
 
+
 -- Q-14) Find accounts that have never made a transaction.
 
 -- Q-15) Show total loan amount issued per loan type.
+select loan_type, sum(amount) as total_loan_amount from Loans
+group by loan_type
+order by total_loan_amount desc
+
 
 -- Q-16) Find customers who spent more than 100,000 in a month.
 
@@ -84,6 +94,11 @@ where l.loan_status = 'Active' and card_type = 'Debit'
 
 
 -- Q-23) Rank accounts by total outgoing (debit) amount.
+select account_id, sum(amount) as total_outgoing_amount from Transactions
+where txn_type = 'Debit'
+group by account_id
+order by total_outgoing_amount desc
+
 
 -- Q-24) Find customers with overdue loans (loan_status still Active after N months).
 
@@ -95,8 +110,16 @@ where cd.status = 'Active' and a.status = 'Closed'
 
 
 -- Q-26) List all customers who made a transaction using their account.
+select distinct c.* from Customers c
+join Accounts a on a.customer_id = c.customer_id
+join Transactions t on t.account_id = a.account_id
+
 
 -- Q-27) Show customer name, account type, latest transaction date.
+select c.name, a.account_type, t.txn_date from Customers c
+join Accounts a on a.customer_id = c.customer_id
+join Transactions t on t.account_id = a.account_id
+group by c.name, a.account_type, t.txn_date
 
 
 -- Q-28) Find loan customers with their total account balance.
