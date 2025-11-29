@@ -70,24 +70,52 @@ join Exam_Scores es on es.enrollment_id = e.enrollment_id
 group by s.student_id, s.first_name, s.last_name
 order by total_score desc
 
--- Q-13) List students enrolled in courses outside their department.
 
--- Q-14) For each student, calculate GPA (use weighted average based on credits).
+-- Q-11) List students enrolled in courses outside their department.
+select distinct
+    s.student_id,
+    s.first_name,
+    s.last_name,
+    s.department_id as student_department,
+    c.course_id,
+    c.course_name,
+    c.department_id as course_department
+from Students s
+join Enrollments e on s.student_id = e.student_id
+join Courses c on e.course_id = c.course_id
+where s.department_id <> c.department_id
 
--- Q-15) Find the department whose students have the highest average score.
 
--- Q-16) Identify students failing more than 2 courses (score < 35).
+-- Q-12) For each student, calculate GPA (use weighted average based on credits).
 
--- Q-17) Show the course with the widest score gap (max score minus min score).
 
--- Q-18) Find students whose attendance is high but score is low.
+-- Q-13) Find the department whose students have the highest average score.
 
--- Q-19) Find the hardest course based on average score.
 
--- Q-20) Rank students within each department based on their total score.
+-- Q-14) Identify students failing more than 2 courses (score < 35).
 
--- Q-21) Show the improvement or decline in student average between two semesters.
 
--- Q-22) Compare pass percentage by department.
+-- Q-15) Show the course with the widest score gap (max score minus min score).
 
--- Q-23) List the top scoring student in each course during Spring 2024.
+
+-- Q-16) Find students whose attendance is high but score is low.
+
+
+-- Q-17) Find the hardest course based on average score.
+select top 1 c.course_id, c.course_name, avg(es.score) as average_score from Courses c
+join Enrollments e on e.course_id = c.course_id
+join Exam_Scores es on es.enrollment_id = e.enrollment_id
+group by c.course_id, c.course_name
+order by average_score desc
+
+
+-- Q-18) Rank students within each department based on their total score.
+
+
+-- Q-19) Show the improvement or decline in student average between two semesters.
+
+
+-- Q-20) Compare pass percentage by department.
+
+
+-- Q-21) List the top scoring student in each course during Spring 2024.

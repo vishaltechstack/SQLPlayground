@@ -28,26 +28,26 @@ join movies m on m.movie_id = r.movie_id
 order by r.rating desc
 
 
--- Q-9) Count movies per genre.
+-- Q-7) Count movies per genre.
 select genre, count(title) as total_movies from movies
 group by genre
 order by total_movies desc
 
 
--- Q-10) Show movies directed by Christopher Nolan.
+-- Q-8) Show movies directed by Christopher Nolan.
 select m.*, d.name as director_name from movies m
 join movie_directors md on md.movie_id = m.movie_id
 join directors d on d.director_id = md.director_id
 where d.name = 'Christopher Nolan'
 
 
--- Q-13) Count ratings submitted each year.
+-- Q-9) Count ratings submitted each year.
 select year(rating_date) as rating_year, count(rating) as total_ratings from ratings
 group by year(rating_date)
 order by total_ratings desc
 
 
--- Q-14) Show movies released before 2000 with rating average > 4.
+-- Q-10) Show movies released before 2000 with rating average > 4.
 select m.*, r.rating, r.rating_date from movies m
 join ratings r on r.movie_id = m.movie_id
 where m.release_year > 2000 and r.rating > 4
@@ -65,14 +65,30 @@ order by highest_rating desc
 */
 
 -- Q-16) Identify country with most registered users.
+select top 1 country, count(user_id) as total_registered_users from users
+group by country
+order by total_registered_users desc
+
 
 -- Q-17) List users who have rated movies across 5+ genres.
 
--- Q-18) Find directors with the highest average movie rating.
+-- Q-18) Find top 5 directors with the highest average movie rating.
+select top 5 d.director_id, d.name, avg(r.rating) as avg_movie_rating from directors d
+join movie_directors md on md.director_id = d.director_id
+join ratings r on r.movie_id = md.movie_id
+group by d.director_id, d.name
+order by avg_movie_rating desc
+
 
 -- Q-19) Show the trend of rating count per month.
 
--- Q-20) List the oldest movie with at least 100 ratings.
+-- Q-20) List the oldest movie with at least 4.5 ratings.
+select m.* from movies m
+join ratings r on r.movie_id = m.movie_id
+where m.release_year between 1900 and 2000 and r.rating >= 4.5
+
+select * from movies
+select * from ratings
 
 -- Q-21) Find movies that always received a rating higher than 3.
 

@@ -5,9 +5,11 @@
 */
 select * from Customers
 where join_date between '2024-01-01' and '2024-12-31'  -- By using 'between' or 'and' operator
+
 --2
 select * from Customers
 where year(join_date) = 2024  -- By using 'year' function 
+
 --3
 select * from Customers
 where join_date >= '2024-01-01' and join_date <= '2024-12-31'  -- By using 'and' operator
@@ -34,8 +36,6 @@ group by city
 
 
 -- Q-6) Show customers with more than one active account.
-select * from Customers
-select * from Accounts
 
 
 -- Q-7) Find total transaction amount per account.
@@ -44,7 +44,9 @@ join Transactions t on t.account_id = a.account_id
 group by a.account_id, a.account_type
 order by total_transaction_amount desc
 
+
 -- Q-8) Find the latest transaction for each customer.
+
 
 -- Q-9) List customers whose account balance is above 100,000.
 select c.name, a.balance from Customers c
@@ -68,6 +70,7 @@ from Transactions
 
 -- Q-14) Find accounts that have never made a transaction.
 
+
 -- Q-15) Show total loan amount issued per loan type.
 select loan_type, sum(amount) as total_loan_amount from Loans
 group by loan_type
@@ -76,15 +79,32 @@ order by total_loan_amount desc
 
 -- Q-16) Find customers who spent more than 100,000 in a month.
 
+
 -- Q-17) Identify accounts with suspicious transactions (same-day multiple transactions > 50,000).
+
 
 -- Q-18) Calculate interest earned per loan using principal and rate (assume simple interest).
 
+
 -- Q-19) Show monthly transaction volume trend for the last year.
+/*
+select 
+    datename(month, txn_date) as month,
+    count(*) as total_transactions
+from Transactions
+where txn_date >= dateadd(month, -12, getdate())
+group by datename(month, txn_date)
+order by month
+*/
 
 -- Q-20) Detect customers with sudden balance drops over 30% in a day.
 
+
 -- Q-21) Find merchants receiving the highest payments.
+select merchant, sum(amount) as highest_payment from Transactions
+group by merchant
+order by highest_payment desc
+
 
 -- Q-22) List customers who have a loan but no credit card.
 select c.name, l.loan_status, cd.card_type from Customers c
@@ -101,6 +121,7 @@ order by total_outgoing_amount desc
 
 
 -- Q-24) Find customers with overdue loans (loan_status still Active after N months).
+
 
 -- Q-25) Identify customers whose cards are active but accounts are closed.
 select c.customer_id, c.name, cd.status as card, a.status as account from Customers c
