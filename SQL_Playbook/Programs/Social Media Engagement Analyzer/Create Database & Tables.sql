@@ -38,9 +38,7 @@ CREATE TABLE Followers (
     follower_id INT,
     following_id INT,
     followed_at DATETIME,
-    PRIMARY KEY (follower_id, following_id),
-    FOREIGN KEY (follower_id) REFERENCES Users(user_id),
-    FOREIGN KEY (following_id) REFERENCES Users(user_id)
+    PRIMARY KEY (follower_id, following_id)
 )
 
 CREATE TABLE Post_Engagement (

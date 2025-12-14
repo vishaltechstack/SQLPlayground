@@ -1,0 +1,195 @@
+INSERT INTO Warehouses (warehouse_id, warehouse_name, location, capacity) VALUES
+(1000, 'North Hub', 'Delhi, India', 50000),
+(1001, 'West Storage Unit', 'Mumbai, India', 45000),
+(1002, 'Central Distribution Center', 'Bangalore, India', 60000),
+(1003, 'East Regional Warehouse', 'Kolkata, India', 35000),
+(1004, 'South Logistics Hub', 'Chennai, India', 55000),
+(1005, 'West Mega Hub', 'Pune, India', 70000),
+(1006, 'Northern Cold Storage', 'Jaipur, India', 30000),
+(1007, 'Coastal Distribution Center', 'Visakhapatnam, India', 42000),
+(1008, 'Metro Storage Facility', 'Hyderabad, India', 52000),
+(1009, 'Premium Logistics Center', 'Ahmedabad, India', 48000);
+
+
+INSERT INTO Items (item_id, item_name, item_category, weight) VALUES
+(2000, 'LED TV 42 Inch', 'Electronics', 7.50),
+(2001, 'Refrigerator 180L', 'Appliances', 32.80),
+(2002, 'Air Conditioner 1.5 Ton', 'Appliances', 45.20),
+(2003, 'Laptop 15 Inch', 'Electronics', 1.60),
+(2004, 'Office Chair', 'Furniture', 12.40),
+(2005, 'Wooden Table', 'Furniture', 25.30),
+(2006, 'Smartphone', 'Electronics', 0.20),
+(2007, 'Microwave Oven', 'Appliances', 18.00),
+(2008, 'Bookshelf 5-Tier', 'Furniture', 22.10),
+(2009, 'Ceiling Fan', 'Appliances', 7.80),
+(2010, 'Bluetooth Speaker', 'Electronics', 0.80),
+(2011, 'Portable Generator', 'Hardware', 35.50),
+(2012, 'Wall Clock', 'Decor', 1.20),
+(2013, 'Gaming Console', 'Electronics', 3.50),
+(2014, 'Office Desk', 'Furniture', 55.00),
+(2015, 'Electric Kettle', 'Appliances', 0.90),
+(2016, 'Vacuum Cleaner', 'Appliances', 6.20),
+(2017, 'Bed Frame', 'Furniture', 72.40),
+(2018, 'Table Lamp', 'Decor', 2.30),
+(2019, '2TB Hard Drive', 'Electronics', 0.45);
+
+
+INSERT INTO Suppliers (supplier_id, supplier_name, contact_person, contact_phone) VALUES
+(3000, 'BrightTech Supplies', 'Rohit Malhotra', '+91-9876543210'),
+(3001, 'HomeEase Traders', 'Amit Sharma', '+91-9123456780'),
+(3002, 'MetroElectro Distributors', 'Karan Verma', '+91-9988776655'),
+(3003, 'FurniturePro India', 'Devika Rao', '+91-9090909090'),
+(3004, 'Appliance World Co.', 'Mehul Jain', '+91-9811122233'),
+(3005, 'TechNova Pvt Ltd', 'Suresh Gupta', '+91-9800001212'),
+(3006, 'Prime Home Furnishings', 'Sadhana Kapoor', '+91-9845123490'),
+(3007, 'Elite Appliances Co.', 'Tarun Khanna', '+91-9098765432'),
+(3008, 'UrbanElectro Traders', 'Mahesh Rao', '+91-9988001122'),
+(3009, 'Super Logistics Supplies', 'Nikita Jain', '+91-9753102468');
+
+
+INSERT INTO Shipments (
+    shipment_id, supplier_id, origin_warehouse_id, destination_warehouse_id,
+    shipment_date, expected_delivery_date, shipping_cost
+) VALUES
+(4000, 3000, 1000, 1002, '2025-01-10', '2025-01-14', 12000.50),
+(4001, 3002, 1002, 1001, '2025-01-08', '2025-01-12', 9000.00),
+(4002, 3001, 1003, 1004, '2025-01-15', '2025-01-19', 15000.75),
+(4003, 3003, 1004, 1000, '2025-01-05', '2025-01-10', 8500.00),
+(4004, 3004, 1001, 1003, '2025-01-20', '2025-01-24', 11000.35),
+(4005, 3000, 1002, 1004, '2025-01-12', '2025-01-17', 10000.00),
+(4006, 3001, 1000, 1003, '2025-01-07', '2025-01-12', 13000.20),
+(4007, 3002, 1004, 1001, '2025-01-09', '2025-01-13', 9500.90),
+(4008, 3005, 1006, 1001, '2025-02-01', '2025-02-05', 14000.40),
+(4009, 3007, 1009, 1003, '2025-02-02', '2025-02-06', 15500.75),
+(4010, 3004, 1008, 1002, '2025-02-03', '2025-02-07', 9500.00),
+(4011, 3008, 1000, 1004, '2025-02-04', '2025-02-09', 12500.55),
+(4012, 3009, 1001, 1005, '2025-02-05', '2025-02-10', 17500.00),
+(4013, 3006, 1004, 1007, '2025-02-06', '2025-02-11', 16000.10),
+(4014, 3007, 1003, 1008, '2025-02-07', '2025-02-12', 10200.90),
+(4015, 3002, 1002, 1006, '2025-02-08', '2025-02-13', 8900.20),
+(4016, 3001, 1007, 1009, '2025-02-09', '2025-02-14', 13800.60),
+(4017, 3000, 1005, 1008, '2025-02-10', '2025-02-15', 15000.50);
+
+
+INSERT INTO ShipmentItems (shipment_item_id, shipment_id, item_id, quantity) VALUES
+(5000, 4000, 2000, 20),
+(5001, 4000, 2003, 35),
+(5002, 4001, 2001, 10),
+(5003, 4001, 2006, 50),
+(5004, 4002, 2004, 15),
+(5005, 4002, 2005, 8),
+(5006, 4003, 2008, 12),
+(5007, 4004, 2007, 25),
+(5008, 4005, 2002, 18),
+(5009, 4005, 2009, 30),
+(5010, 4006, 2000, 10),
+(5011, 4007, 2006, 75),
+(5012, 4008, 2004, 22),
+(5013, 4008, 2015, 40),
+(5014, 4009, 2017, 10),
+(5015, 4010, 2007, 18),
+(5016, 4011, 2010, 55),
+(5017, 4011, 2019, 30),
+(5018, 4012, 2002, 20),
+(5019, 4012, 2016, 12),
+(5020, 4013, 2018, 15),
+(5021, 4013, 2009, 27),
+(5022, 4014, 2011, 8),
+(5023, 4014, 2000, 12),
+(5024, 4015, 2006, 90),
+(5025, 4015, 2012, 25),
+(5026, 4016, 2013, 14),
+(5027, 4016, 2014, 5),
+(5028, 4017, 2017, 7),
+(5029, 4017, 2005, 10),
+(5030, 4009, 2018, 15),
+(5031, 4010, 2003, 20);
+
+
+INSERT INTO Routes (route_id, start_location, end_location, distance_km, avg_travel_time_hours) VALUES
+(6000, 'Delhi', 'Bangalore', 2150.50, 36.5),
+(6001, 'Bangalore', 'Mumbai', 980.40, 20.0),
+(6002, 'Kolkata', 'Chennai', 1670.30, 28.7),
+(6003, 'Chennai', 'Delhi', 2200.90, 38.2),
+(6004, 'Mumbai', 'Kolkata', 1960.75, 34.0),
+(6005, 'Jaipur', 'Mumbai', 1140.25, 20.5),
+(6006, 'Hyderabad', 'Delhi', 1580.70, 27.8),
+(6007, 'Ahmedabad', 'Chennai', 1820.45, 30.2),
+(6008, 'Pune', 'Hyderabad', 560.30, 10.0),
+(6009, 'Kolkata', 'Bangalore', 1870.55, 29.5),
+(6010, 'Bangalore', 'Hyderabad', 570.20, 9.5);
+
+
+INSERT INTO ShipmentRoutes (shipment_route_id, shipment_id, route_id) VALUES
+(7000, 4000, 6000),
+(7001, 4001, 6001),
+(7002, 4002, 6004),
+(7003, 4003, 6003),
+(7004, 4004, 6002),
+(7005, 4005, 6001),
+(7006, 4006, 6004),
+(7007, 4007, 6003),
+(7008, 4008, 6005),
+(7009, 4009, 6007),
+(7010, 4010, 6006),
+(7011, 4011, 6003),
+(7012, 4012, 6008),
+(7013, 4013, 6002),
+(7014, 4014, 6009),
+(7015, 4015, 6010),
+(7016, 4016, 6004),
+(7017, 4017, 6006);
+
+
+INSERT INTO TrackingStatus (
+    tracking_id, shipment_id, status, status_time, location, remarks
+) VALUES
+(8000, 4000, 'Dispatched', '2025-01-10 08:00:00', 'Delhi - North Hub', 'On time'),
+(8001, 4000, 'In Transit', '2025-01-11 15:30:00', 'Nagpur', 'Smooth travel'),
+(8002, 4000, 'Out for Delivery', '2025-01-14 09:00:00', 'Bangalore - CDC', 'Scheduled'),
+(8003, 4001, 'Dispatched', '2025-01-08 07:50:00', 'Bangalore - CDC', 'Left warehouse'),
+(8004, 4001, 'Delayed', '2025-01-09 18:00:00', 'Pune', 'Weather issue'),
+(8005, 4002, 'Dispatched', '2025-01-15 10:10:00', 'Kolkata - ERW', 'On time'),
+(8006, 4002, 'In Transit', '2025-01-17 13:30:00', 'Visakhapatnam', 'Moving'),
+(8007, 4003, 'Dispatched', '2025-01-05 09:00:00', 'Chennai - SLH', 'No issues'),
+(8008, 4004, 'Dispatched', '2025-01-20 11:20:00', 'Mumbai - WSU', 'Departed'),
+(8009, 4004, 'In Transit', '2025-01-21 18:20:00', 'Bhubaneswar', 'On track'),
+(8010, 4005, 'Dispatched', '2025-01-12 10:00:00', 'Bangalore - CDC', 'On schedule'),
+(8011, 4005, 'In Transit', '2025-01-14 16:30:00', 'Hyderabad', 'Smooth travel'),
+(8012, 4006, 'Dispatched', '2025-01-07 09:45:00', 'Delhi - North Hub', 'No delays'),
+(8013, 4007, 'Dispatched', '2025-01-09 10:15:00', 'Chennai - SLH', 'Left gate'),
+(8014, 4007, 'In Transit', '2025-01-11 17:40:00', 'Goa', 'All good'),
+(8015, 4007, 'Out for Delivery', '2025-01-13 07:50:00', 'Mumbai - WSU', 'Expected today'),
+(8016, 4008, 'Dispatched', '2025-02-01 09:00:00', 'Jaipur Hub', 'Left warehouse'),
+(8017, 4008, 'In Transit', '2025-02-03 16:00:00', 'Surat', 'On schedule'),
+(8018, 4009, 'Dispatched', '2025-02-02 08:30:00', 'Ahmedabad Hub', 'Good weather'),
+(8019, 4009, 'In Transit', '2025-02-04 14:10:00', 'Nagpur', 'Smooth travel'),
+(8020, 4010, 'Dispatched', '2025-02-03 07:45:00', 'Hyderabad SDC', 'Left on time'),
+(8021, 4011, 'Dispatched', '2025-02-04 10:20:00', 'Delhi North Hub', 'Clear road'),
+(8022, 4012, 'Dispatched', '2025-02-05 09:15:00', 'Mumbai WSU', 'No issues'),
+(8023, 4012, 'In Transit', '2025-02-07 17:45:00', 'Nashik', 'Slow traffic'),
+(8024, 4013, 'Dispatched', '2025-02-06 11:40:00', 'Chennai SLH', 'On schedule'),
+(8025, 4013, 'In Transit', '2025-02-07 13:45:00', 'Vellore', 'Clear'),
+(8026, 4014, 'Dispatched', '2025-02-07 09:50:00', 'Kolkata ERW', 'Left gate'),
+(8027, 4015, 'Dispatched', '2025-02-08 08:20:00', 'Bangalore CDC', 'All good'),
+(8028, 4015, 'In Transit', '2025-02-09 16:30:00', 'Chittoor', 'On time'),
+(8029, 4016, 'Dispatched', '2025-02-09 10:10:00', 'Visakhapatnam CDC', 'No delay'),
+(8030, 4017, 'Dispatched', '2025-02-10 11:00:00', 'Pune Mega Hub', 'Shipped'),
+(8031, 4008, 'Out for Delivery', '2025-02-05 08:00:00', 'Mumbai', 'Expected today'),
+(8032, 4009, 'Out for Delivery', '2025-02-06 07:45:00', 'Kolkata', 'Final route'),
+(8033, 4010, 'In Transit', '2025-02-06 18:20:00', 'Chennai Bypass', 'On time'),
+(8034, 4011, 'In Transit', '2025-02-06 19:10:00', 'Hyderabad', 'Arrival soon'),
+(8035, 4014, 'In Transit', '2025-02-10 15:45:00', 'Bhubaneswar', 'Moving');
+
+
+INSERT INTO DamagedShipments (damage_id, shipment_id, item_id, damage_description, reported_date) VALUES
+(9000, 4001, 2001, 'Front door dented during transit', '2025-01-13'),
+(9001, 4002, 2004, 'Scratches spotted on surface', '2025-01-19'),
+(9002, 4005, 2002, 'Internal component damage due to impact', '2025-01-17'),
+(9003, 4007, 2006, 'Screen cracked on arrival', '2025-01-13'),
+(9004, 4008, 2015, 'Broken handle', '2025-02-05'),
+(9005, 4009, 2017, 'Cracked wood panel', '2025-02-06'),
+(9006, 4011, 2010, 'Speaker grill damaged', '2025-02-09'),
+(9007, 4013, 2018, 'Lamp shade bent', '2025-02-11'),
+(9008, 4015, 2012, 'Glass cover shattered', '2025-02-13'),
+(9009, 4017, 2005, 'Table leg broken', '2025-02-15');

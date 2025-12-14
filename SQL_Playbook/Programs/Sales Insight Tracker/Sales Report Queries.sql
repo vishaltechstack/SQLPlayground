@@ -2,12 +2,15 @@
 select * from Orders
 where order_date between '2024-01-01' and '2024-01-31'
 
+
 -- Q-2) Find total number of customers.#
 select count(customer_id) from Customers
+
 
 -- Q-3) Count how many products exist in each category.
 select category, count(*) as product_count from Products
 group by category
+
 
 -- Q-4) Show top 10 most ordered products.
 select top 10 p.product_id, p.product_name, sum(oi.quantity) as total_quantity_sold from Order_items oi
@@ -16,10 +19,18 @@ on oi.product_id = p.product_id
 group by p.product_id, p.product_name
 order by total_quantity_sold desc
 
+
 -- Q-5) Find customers who did not place any order.
-select * from Order_items
+select c.customer_id, c.customer_name from Customers c
+join Orders o on o.customer_id = c.customer_id
+where c. customer_id not in (select o.customer_id from Orders)
+
 
 -- Q-6) Show total sales by month.
+select datename(month, order_date) as month_name, sum(total_amount) as total_sales from Orders
+group by datename(month, order_date)
+order by total_sales desc
+
 
 -- Q-7) Calculate total revenue from each product category.
 select p.category, sum(oi.quantity * oi.unit_price) as total_revenue from Order_items oi
@@ -27,9 +38,11 @@ join Products p on p.product_id = oi.product_id
 group by p.category
 order by total_revenue desc
 
+
 -- Q-8) Find products whose unit price is above the average unit price.
 select * from Products
 where unit_price > (select avg(unit_price) from Products)
+
 
 -- Q-9) Count orders per payment method.
 select payment_method, count(order_id) as order_count from Orders
@@ -38,6 +51,11 @@ order by order_count desc
 
 
 -- Q-10) List top 5 stores by total sales.
+select * from stores
+select * from Customers
+select * from Orders
+
+
 
 -- Q-11) Get total quantity sold per product category.
 
