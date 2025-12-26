@@ -146,7 +146,7 @@ group by l.lesson_id, l.title, p.status
 
 
 -- Q-28) Find students enrolled in more than 2 courses.
-select u.user_id, u.full_name, count(e.course_id) as total_courses from Users u
+select u.user_id as student_id, u.full_name as student_name, count(e.course_id) as total_courses from Users u
 join Enrollments e on e.user_id = u.user_id
 where u.role = 'student'
 group by u.user_id, u.full_name
@@ -167,6 +167,8 @@ order by c.course_id
 
 
 -- Q-32) List courses created in the last month.
+select * from Courses
+where month(created_at) = (select max(month(created_at)) from Courses)
 
 
 -- Q-33) Show searches performed in March 2025.
@@ -175,18 +177,36 @@ where search_date >= '2025-03-01' and search_date <= '2025-03-31'
 
 
 -- Q-34) Find the first enrollment date for each student.
+select u.user_id as student_id, u.full_name as student_name, min(e.enroll_date) as first_enrollment_date from Users u
+join Enrollments e on e.user_id = u.user_id
+where u.role = 'student'
+group by u.user_id, u.full_name
 
 
 -- Q-35) List progress records completed in the last week.
 
 
 -- Q-36) Find students who rated a course and also completed all its lessons.
+select u.user_id as student_id, u.full_name as student_name from Users u
+join Ratings r on r.user_id = u.user_id
+join Progress p on p.user_id = r.user_id
+where r.user_id is not null and p.status = 'completed' and u.role = 'student'
+group by u.user_id, u.full_name
 
 
 -- Q-37) Show courses that have no enrollments.
+select c.course_id, c.title from Courses c
+join Enrollments e on e.course_id = c.course_id
+where e.course_id is null
+group by  c.course_id, c.title
 
 
 -- Q-38) Find the most searched keyword by students.
+select top 1 s.keyword, count(s.search_id) as search_count from Users u
+join Searches s on s.user_id = u.user_id
+where u.role = 'student'
+group by s.keyword
+order by search_count desc
 
 
 -- Q-39) List students who have enrolled in both “Python for Beginners” and “Advanced SQL Queries”.
