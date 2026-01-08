@@ -95,7 +95,7 @@ This repo is intentionally structured for hands-on practice.
 ## Author
 
 **Vishal Sharma**  
-Data Analyst | SQL | Python | Power BI  
+Data Analyst | Python Developer | SQL Developer | Power BI Analyst | Data Engineer | Machine Learning Engineer 
 
 ---
 
